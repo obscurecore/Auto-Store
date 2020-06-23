@@ -1,4 +1,4 @@
-package ru.ruslan.domain;
+package ru.ruslan.entity;
 
 public enum Role {
     USER;

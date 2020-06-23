@@ -1,4 +1,4 @@
-package ru.ruslan.domain;
+package ru.ruslan.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
