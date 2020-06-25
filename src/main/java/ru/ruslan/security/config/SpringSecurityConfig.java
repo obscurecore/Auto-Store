@@ -1,5 +1,7 @@
 package ru.ruslan.security.config;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -13,20 +15,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
-
 @EnableWebSecurity
+@AllArgsConstructor
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
     @Qualifier("UserDetailServiceImpl")
     UserDetailsService userDetailsService;
-
-    /*  @Autowired
-    private AccessDeniedHandler accessDeniedHandler;
-*/
+    PasswordEncoder passwordEncoder;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

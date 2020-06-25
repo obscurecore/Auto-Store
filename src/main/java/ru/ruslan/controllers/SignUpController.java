@@ -12,6 +12,7 @@ import ru.ruslan.service.SignUpService;
 public class SignUpController {
     private SignUpService service;
 
+
     @GetMapping("/signUp")
     public String getSignUpPage() {
         return "signup";

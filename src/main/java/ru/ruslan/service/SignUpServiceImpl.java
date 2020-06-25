@@ -1,5 +1,6 @@
 package ru.ruslan.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -13,12 +14,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
+@AllArgsConstructor
 public class SignUpServiceImpl implements SignUpService {
 
-    @Autowired
     private UserRepository userRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override

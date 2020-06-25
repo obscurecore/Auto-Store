@@ -1,5 +1,6 @@
 package ru.ruslan.security.details;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.ruslan.models.State;
@@ -10,14 +11,10 @@ import java.util.Collection;
 /**
  * Shell over User for Account in Spring Context Security
  */
-
+@AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
     User user;
-
-    public UserDetailsImpl(User user) {
-        this.user = user;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
