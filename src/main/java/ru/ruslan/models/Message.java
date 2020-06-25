@@ -1,4 +1,4 @@
-package ru.ruslan.entity;
+package ru.ruslan.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

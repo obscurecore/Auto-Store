@@ -1,7 +1,7 @@
-package ru.ruslan.repository;
+package ru.ruslan.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.ruslan.entity.Message;
+import ru.ruslan.models.Message;
 
 import java.util.List;
 
