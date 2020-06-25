@@ -1,0 +1,14 @@
+POST http://localhost:8080/login
+Content-Type: application/x-www-form-urlencoded
+
+email=q@q&password=1234
+
+###
+//Registration
+POST http://localhost:8080/signUp
+Content-Type: application/x-www-form-urlencoded
+
+name=Ruslan&password=1234&email=q@q
+
+###
+

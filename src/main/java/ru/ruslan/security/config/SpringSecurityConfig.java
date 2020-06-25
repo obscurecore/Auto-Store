@@ -23,7 +23,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     @Qualifier("UserDetailServiceImpl")
     UserDetailsService userDetailsService;
-  /*  @Autowired
+
+    /*  @Autowired
     private AccessDeniedHandler accessDeniedHandler;
 */
 
@@ -39,19 +40,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
-                .failureUrl("/signIn?error")
+                .usernameParameter("email")
+                .failureUrl("/login?error")
                 .permitAll();
     }
-
-/*
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
-        auth.inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER")
-                .and()
-                .withUser("admin").password("password").roles("ADMIN");
-    }*/
 
     @Autowired
     @Override

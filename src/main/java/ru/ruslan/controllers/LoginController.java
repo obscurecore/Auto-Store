@@ -13,11 +13,4 @@ public class LoginController {
         return "login";
     }
 
-
-    @PostMapping("/login")
-    public String signUp(SignUpDto form) {
-        System.err.println(form.getPassword());
-        // service.signUp(form);
-        return "redirect:/login";
-    }
 }

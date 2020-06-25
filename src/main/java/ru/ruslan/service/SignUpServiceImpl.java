@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.ruslan.dto.SignUpDto;
 import ru.ruslan.models.Role;
+import ru.ruslan.models.State;
 import ru.ruslan.models.User;
 import ru.ruslan.repositories.UserRepository;
 
@@ -27,7 +28,8 @@ public class SignUpServiceImpl implements SignUpService {
         User user = User.builder()
                 .email(form.getEmail())
                 .password(passwordEncoder.encode(form.getPassword()))
-                .username(form.getName())
+                .username(form.getUsername())
+                .state(State.NOT_CONFIRMED)
                 .roles(set)
                 .build();
 
