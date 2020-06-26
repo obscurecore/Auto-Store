@@ -21,6 +21,7 @@ public class User {
     private String email;
     private String username;
     private String password;
+    private String activationCode;
 
     // OneToMany relationship contain in separate table
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
