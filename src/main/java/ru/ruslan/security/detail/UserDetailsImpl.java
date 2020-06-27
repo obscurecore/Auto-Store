@@ -1,10 +1,10 @@
-package ru.ruslan.security.details;
+package ru.ruslan.security.detail;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.ruslan.models.State;
-import ru.ruslan.models.User;
+import ru.ruslan.model.State;
+import ru.ruslan.model.User;
 
 import java.util.Collection;
 

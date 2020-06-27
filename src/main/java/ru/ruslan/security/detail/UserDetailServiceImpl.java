@@ -1,12 +1,12 @@
-package ru.ruslan.security.details;
+package ru.ruslan.security.detail;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.ruslan.models.User;
-import ru.ruslan.repositories.UserRepository;
+import ru.ruslan.model.User;
+import ru.ruslan.repository.UserRepository;
 
 import java.util.Optional;
 

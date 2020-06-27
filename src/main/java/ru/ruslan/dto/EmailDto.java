@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmailDto {
+    private String username;
     private String to;
     private String templateName;
-    private String body;
+    private String secret;
 }

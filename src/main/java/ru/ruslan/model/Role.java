@@ -1,4 +1,4 @@
-package ru.ruslan.models;
+package ru.ruslan.model;
 
 import org.springframework.security.core.GrantedAuthority;
 

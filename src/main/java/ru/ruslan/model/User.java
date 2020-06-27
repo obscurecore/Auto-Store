@@ -1,9 +1,10 @@
-package ru.ruslan.models;
+package ru.ruslan.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -19,6 +20,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String email;
+    @UniqueElements
     private String username;
     private String password;
     private boolean enabled;
@@ -32,6 +34,10 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private State state;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "verification_id")
+    private VerificationToken verificationToken;
 
    /* @OneToOne(targetEntity = VerificationToken.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")

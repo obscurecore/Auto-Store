@@ -1,4 +1,4 @@
-package ru.ruslan.service;
+package ru.ruslan.service.interf;
 
 import ru.ruslan.dto.EmailDto;
 import ru.ruslan.dto.SignUpDto;

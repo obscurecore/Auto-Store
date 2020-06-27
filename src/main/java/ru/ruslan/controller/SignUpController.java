@@ -1,4 +1,4 @@
-package ru.ruslan.controllers;
+package ru.ruslan.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.ruslan.dto.SignUpDto;
-import ru.ruslan.service.SignUpService;
+import ru.ruslan.service.interf.SignUpService;
 
 @AllArgsConstructor
 @Controller
