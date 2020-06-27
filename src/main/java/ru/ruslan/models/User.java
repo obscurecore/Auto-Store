@@ -21,6 +21,7 @@ public class User {
     private String email;
     private String username;
     private String password;
+    private boolean enabled;
     private String activationCode;
 
     // OneToMany relationship contain in separate table
@@ -31,4 +32,8 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private State state;
+
+   /* @OneToOne(targetEntity = VerificationToken.class, fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, name = "user_id")
+    private VerificationToken verificationToken;*/
 }

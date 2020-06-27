@@ -22,9 +22,10 @@ public class SignUpController {
 
     @PostMapping("/signUp")
     public String signUp(SignUpDto form) {
-        if (service.signUp(form)==false) {
+        service.signUp(form);
+      /*  if (service.signUp(form)==false) {
             System.err.println("already exist");
-        }
+        }*/
         return "redirect:/signUp";
     }
 

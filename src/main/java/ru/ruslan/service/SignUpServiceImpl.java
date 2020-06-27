@@ -1,9 +1,9 @@
 package ru.ruslan.service;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import ru.ruslan.dto.EmailDto;
 import ru.ruslan.dto.SignUpDto;
 import ru.ruslan.models.Role;
 import ru.ruslan.models.State;
@@ -18,9 +18,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class SignUpServiceImpl implements SignUpService {
 
-    private Mail mailSender;
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
+    private final Mail mailSender;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public boolean activateUser(String code) {
@@ -35,11 +35,13 @@ public class SignUpServiceImpl implements SignUpService {
     }
 
     @Override
-    public boolean signUp(SignUpDto form) {
+    public EmailDto signUp(SignUpDto form) {
+
+      //  String link = "http://localhost:8080/signUp/confirmation/" + UUID.randomUUID().toString();
 
         Optional<User> userOptional = userRepository.findUsersByEmail(form.getEmail());
         if (userOptional.isPresent()) {
-            return false;
+            return null;
         }
 
         User user = User.builder()
@@ -53,12 +55,18 @@ public class SignUpServiceImpl implements SignUpService {
 
         String message = String.format(
                 "Hello!, %s! \n" +
-                        "Welcome to Store. Please visit next link to activate your account: http://localhost:8080/activate/%s",
+                        "Welcome to Store. Please visit next link to activate your account: http://localhost:8080/signUo/confirmation/%s",
                 user.getUsername(),
                 user.getActivationCode()
         );
         userRepository.save(user);
         mailSender.send(user.getEmail(), "Activation code", message);
-        return true;
+        System.err.println("==========RETURN POINT==========");
+
+        return EmailDto.builder()
+                .body(message)
+                .to(user.getEmail())
+                .templateName("email_confirmation")
+                .build();
     }
 }
