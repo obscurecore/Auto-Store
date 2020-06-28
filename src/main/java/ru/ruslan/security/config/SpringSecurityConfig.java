@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -17,17 +18,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Qualifier("UserDetailServiceImpl")
-    UserDetailsService userDetailsService;
-    PasswordEncoder passwordEncoder;
+    private UserDetailsService userDetailsService;
+    private PasswordEncoder passwordEncoder;
+    private AccessDeniedHandler accessDeniedHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 
         http.authorizeRequests()
-                .antMatchers("/signUp","/activate/*").permitAll()
+                .antMatchers("/signUp", "/activate/*").permitAll()
                 .antMatchers("/users").authenticated()
-                .antMatchers("/").authenticated();
+                .antMatchers("/").authenticated()
+                .and()
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
 
         http.formLogin()
                 .loginPage("/login")

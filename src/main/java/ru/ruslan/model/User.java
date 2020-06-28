@@ -4,9 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.UniqueElements;
+import ru.ruslan.validator.UniqueEmail;
+import ru.ruslan.validator.UniqueEmailValidator;
 
 import javax.persistence.*;
+import javax.validation.Constraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Data
@@ -19,12 +25,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String email;
-    @UniqueElements
+
     private String username;
+
     private String password;
+
     private boolean enabled;
-    private String activationCode;
 
     // OneToMany relationship contain in separate table
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -39,7 +47,4 @@ public class User {
     @JoinColumn(name = "verification_id")
     private VerificationToken verificationToken;
 
-   /* @OneToOne(targetEntity = VerificationToken.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "user_id")
-    private VerificationToken verificationToken;*/
 }
