@@ -12,9 +12,8 @@ import java.util.stream.Collectors;
 public class ConstraintServiceImpl implements ConstraintService {
 
     public Map<String, String> getErrors(BindingResult bindingResult) {
-        Map<String, String> resultB = bindingResult.getAllErrors().stream().collect(
+        return bindingResult.getAllErrors().stream().collect(
                 Collectors.toMap(DefaultMessageSourceResolvable::getCode, DefaultMessageSourceResolvable::getDefaultMessage));
-        return resultB;
     }
 
 }

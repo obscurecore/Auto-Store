@@ -13,7 +13,6 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 public class VerificationToken {
     private static final int EXPIRATION = 60 * 24;
@@ -30,7 +29,7 @@ public class VerificationToken {
     private Date expiryDate = calculateExpiryDate(EXPIRATION);
 
     private Date calculateExpiryDate(int expiryTimeInMinutes) {
-        Calendar cal = Calendar.getInstance();
+        var cal = Calendar.getInstance();
         cal.setTime(new Timestamp(cal.getTime().getTime()));
         cal.add(Calendar.MINUTE, expiryTimeInMinutes);
         return new Date(cal.getTime().getTime());
