@@ -10,7 +10,7 @@ import ru.ruslan.model.State;
 import ru.ruslan.model.User;
 import ru.ruslan.model.VerificationToken;
 import ru.ruslan.repository.UserRepository;
-import ru.ruslan.service.interf.SignUpService;
+import ru.ruslan.service.contract.SignUpService;
 
 import javax.transaction.Transactional;
 import java.util.Collections;

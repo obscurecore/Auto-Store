@@ -1,8 +1,7 @@
-package ru.ruslan.service.interf;
+package ru.ruslan.service.contract;
 
 import ru.ruslan.dto.EmailDto;
 import ru.ruslan.dto.SignUpDto;
-import ru.ruslan.model.User;
 
 public interface SignUpService {
    // boolean activateUser(String code);

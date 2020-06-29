@@ -1,5 +1,5 @@
 package ru.ruslan.aspect;
-/*
+
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class EmailAspect {
     @Autowired
     JavaMailSender javaMailSender;
 
-    @AfterReturning(value = "execution(* ru.ruslan.service.interf.SignUpService.signUp(*))", returning = "emailDto")
+    @AfterReturning(value = "execution(* ru.ruslan.service.contract.SignUpService.signUp(*))", returning = "emailDto")
     public void signUpAdvice(EmailDto emailDto) {
 
         String message = String.format(
@@ -36,4 +36,4 @@ public class EmailAspect {
         msg.setText(message);
         javaMailSender.send(msg);
     }
-}*/
+}

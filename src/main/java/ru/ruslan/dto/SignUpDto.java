@@ -6,6 +6,7 @@ import ru.ruslan.validator.UniqueEmail;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Data
 @PasswordsEqualConstraint(message = "passwords are not equal")
@@ -18,7 +19,7 @@ public class SignUpDto {
     private String email;
 
     @NotBlank(message = "Password cannot be empty")
- //   @Size(min=5, max=45, message = "5:45")
+    @Size(min=5, max=45, message = "5:45")
     private String password;
 
     @NotBlank(message = "Password confirmation cannot be empty")

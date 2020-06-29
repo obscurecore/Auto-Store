@@ -1,5 +1,7 @@
 package ru.ruslan.validator;
 
+import jdk.jfr.Name;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -13,6 +15,7 @@ import javax.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Constraint(validatedBy = PasswordsEqualConstraintValidator.class)
+
 public @interface PasswordsEqualConstraint {
 String message()default "{error equil}";
 

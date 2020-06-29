@@ -1,3 +1,18 @@
+GET http://localhost:8080/signUp
+Accept: application/json
+
+###
+POST http://localhost:8080/signUp
+Content-Type: application/json
+
+{ "email": "Foo", "password": 1234 }
+###
+POST http://localhost:80/api/item
+Content-Type: application/x-www-form-urlencoded
+
+id=99&content=new-element
+
+###
 POST http://localhost:8080/login
 Content-Type: application/x-www-form-urlencoded
 
@@ -8,7 +23,7 @@ email=q@q&password=1234
 POST http://localhost:8080/signUp
 Content-Type: application/x-www-form-urlencoded
 
-name=&password=&email=pg@mail.com&passwordRepeat=123456
+name=&password=7987987987987987&email=pg@mail.com&passwordRepeat=
 
 ###
 
