@@ -14,6 +14,7 @@ import ru.ruslan.service.contract.SignUpService;
 
 import javax.transaction.Transactional;
 import java.util.Collections;
+import java.util.Random;
 import java.util.UUID;
 
 @Component
@@ -40,20 +41,17 @@ public class SignUpServiceImpl implements SignUpService {
     @Override
     public EmailDto signUp(SignUpDto form) {
 
-
+        if (form.getUsername() == null) {
+            form.setUsername("User" + new Random().nextInt(99999));
+        }
         String uuid = UUID.randomUUID().toString();
-/*
-        Optional<User> userOptional = userRepository.findUsersByEmail(form.getEmail());
-        if (userOptional.isPresent()) {
-            return null;
-        }*/
 
         var verificationToken = new VerificationToken();
         verificationToken.setToken(uuid);
 
-
         User user = User.builder()
                 .email(form.getEmail())
+                .username(form.getUsername())
                 .password(passwordEncoder.encode(form.getPassword()))
                 .state(State.NOT_CONFIRMED)
                 .roles(Collections.singleton(Role.USER))
@@ -62,10 +60,10 @@ public class SignUpServiceImpl implements SignUpService {
         userRepository.save(user);
 
         return EmailDto.builder()
-                .username("username")
+                .username(form.getUsername())
                 .secret(uuid)
                 .to(user.getEmail())
-                .templateName("email_confirmation")
+                .templateName("Email Confirmation")
                 .build();
     }
 }

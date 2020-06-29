@@ -1,6 +1,9 @@
 package ru.ruslan.dto;
 
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import ru.ruslan.validator.PasswordsEqualConstraint;
 import ru.ruslan.validator.UniqueEmail;
 
@@ -9,8 +12,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Data
+@Component
 @PasswordsEqualConstraint(message = "passwords are not equal")
 public class SignUpDto {
+
     private String username;
 
     @NotBlank(message = "Please, fill the email")
