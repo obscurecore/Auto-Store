@@ -19,7 +19,7 @@ public class SignUpDto {
     private String email;
 
     @NotBlank(message = "Password cannot be empty")
-    @Size(min=5, max=45, message = "5:45")
+    @Size(min = 5, max = 45, message = "5:45")
     private String password;
 
     @NotBlank(message = "Password confirmation cannot be empty")

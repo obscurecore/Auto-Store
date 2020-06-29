@@ -53,7 +53,7 @@ public class SignUpServiceImpl implements SignUpService {
 
 
         User user = User.builder()
-              .email(form.getEmail())
+                .email(form.getEmail())
                 .password(passwordEncoder.encode(form.getPassword()))
                 .state(State.NOT_CONFIRMED)
                 .roles(Collections.singleton(Role.USER))

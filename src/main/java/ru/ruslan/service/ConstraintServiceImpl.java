@@ -7,6 +7,7 @@ import ru.ruslan.service.contract.ConstraintService;
 
 import java.util.Map;
 import java.util.stream.Collectors;
+
 @Component
 public class ConstraintServiceImpl implements ConstraintService {
 
