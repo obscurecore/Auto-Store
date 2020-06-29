@@ -2,17 +2,20 @@ package ru.ruslan.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import ru.ruslan.dto.SignUpDto;
+import ru.ruslan.exception.VerificationTokenExpiredException;
 import ru.ruslan.service.contract.ConstraintService;
 import ru.ruslan.service.contract.SignUpService;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.security.cert.CertificateExpiredException;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -35,49 +38,25 @@ public class SignUpRestController {
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         return constraintService.getErrors(ex.getBindingResult());
     }
-/*
-    @GetMapping("/signUp")
-    public String getSignUpPage() {
-        return "signUp";
-    }*/
-/*
+
     @SneakyThrows
-    @PostMapping("/signUp")
-    public Map<String, String> signUp(
-            @Valid SignUpDto signUpDto,
-            BindingResult bindingResult, Model model) {
-
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errorsMap = constraintService.getErrors(bindingResult);
-            return errorsMap;
-        }
-
-
-      /*  } else {
-            service.signUp(signUpDto);
-        }*/
-
-      /*  if (service.signUp(form)==false) {
-            System.err.println("already exist");
-        }*/
-
-    //return  httpServletResponse.sendRedirect("signUp");
-   /*    return null;
+    @GetMapping("/confirmation/{link}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public void confirmRegistration(@PathVariable("link")  String link,HttpServletResponse response) {
+        service.confirm(link);
+        response.sendRedirect("/signUp");
     }
-*/
 
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String ExpiredTokenExceptions(VerificationTokenExpiredException ex) {
 
-/*
-    @GetMapping("/activate/{code}")
-    public String activate(Model model, @PathVariable String code) {
-        boolean isActivated = service.activateUser(code);
-        if (isActivated) {
-            System.err.println("=================ACTIVATED=====================");
-        }
-        return "login";
-    }*/
-   /* @ExceptionHandler(DuplicateKeyException.class)
-    public ResponseEntity handleDuplicateKeyException(DuplicateKeyException ex) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse("A Bucket with the same title already exists"));
-    }*/
+        return ex.getMessage();
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String InvalidToken(UsernameNotFoundException ex) {
+        return ex.getMessage();
+    }
 }

@@ -5,6 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DefaultController {
+    @GetMapping("/")
+    public String getRoot() {
+        return "login";
+    }
+
     @GetMapping("/login")
     public String getSignInPage() {
         return "login";

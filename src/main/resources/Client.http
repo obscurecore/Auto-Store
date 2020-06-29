@@ -1,6 +1,9 @@
-### Sign Up
+GET http://localhost:8080/signUp/confirmation/2
+Accept: application/json
+
+###Confirmation
 POST http://localhost:8080/signUp
 Content-Type: application/json
 
 { "email": "pruslang@gmail.com", "password": "123456","passwordRepeat": "123456" }
-###
+###Sign Up

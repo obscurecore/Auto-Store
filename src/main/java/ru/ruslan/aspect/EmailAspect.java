@@ -3,6 +3,8 @@ package ru.ruslan.aspect;
 import lombok.AllArgsConstructor;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.context.annotation.Bean;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
@@ -20,7 +22,9 @@ public class EmailAspect {
 
         var message = String.format(
                 "Hello, %s!\n" +
-                        "Welcome to Store. Please visit next link to activate your account: http://localhost:8080/signUo/confirmation/%s!",
+                        "Welcome to Store. Please visit next link to activate your account:" +
+                        "http://localhost:8080/signUo/confirmation/%s!\n" +
+                        "Valid for 24 hours",
                 emailDto.getUsername(),
                 emailDto.getSecret()
         );
@@ -31,4 +35,5 @@ public class EmailAspect {
         msg.setSubject(emailDto.getTemplateName());
         javaMailSender.send(msg);
     }
+
 }
