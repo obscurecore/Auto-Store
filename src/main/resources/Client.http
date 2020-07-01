@@ -7,5 +7,6 @@ Content-Type: application/json
 
 { "email": "pruslang@gmail.com",
   "password": "123456","passwordRepeat": "123456",
-  "g-recaptcha-response": "1"}
+  "g-recaptcha-response": "1",
+  "remember-me":"on"}
 ###Sign Up

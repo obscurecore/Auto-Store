@@ -33,9 +33,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").authenticated()
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
-                .and();
-        //persistentTokenRepository save tokens in BD
-        //  .rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository());
+                .and()
+                //persistentTokenRepository save tokens in BD
+                .rememberMe().rememberMeParameter("remember-me");
 
         http.formLogin()
                 .loginPage("/login")
