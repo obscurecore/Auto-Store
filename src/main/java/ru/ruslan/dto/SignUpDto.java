@@ -3,9 +3,9 @@ package ru.ruslan.dto;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
 import org.springframework.stereotype.Component;
-import ru.ruslan.validator.PasswordsEqualConstraint;
-import ru.ruslan.validator.ReCaptcha;
-import ru.ruslan.validator.UniqueEmail;
+import ru.ruslan.validator.contract.PasswordsEqualConstraint;
+import ru.ruslan.validator.contract.ReCaptcha;
+import ru.ruslan.validator.contract.UniqueEmail;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

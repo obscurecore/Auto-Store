@@ -2,6 +2,7 @@ package ru.ruslan.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.ruslan.repository.UserRepository;
+import ru.ruslan.validator.contract.UniqueEmail;
 
 import javax.transaction.Transactional;
 import javax.validation.ConstraintValidator;

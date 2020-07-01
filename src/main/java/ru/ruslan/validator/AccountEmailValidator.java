@@ -6,6 +6,7 @@ import ru.ruslan.dto.EmailDto;
 import ru.ruslan.model.State;
 import ru.ruslan.model.User;
 import ru.ruslan.repository.UserRepository;
+import ru.ruslan.validator.contract.AccountEmail;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

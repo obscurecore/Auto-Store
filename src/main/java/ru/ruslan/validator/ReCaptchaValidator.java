@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 import ru.ruslan.dto.ReCaptchaDto;
+import ru.ruslan.validator.contract.ReCaptcha;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

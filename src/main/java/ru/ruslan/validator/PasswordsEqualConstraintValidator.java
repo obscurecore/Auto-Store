@@ -1,6 +1,7 @@
 package ru.ruslan.validator;
 
 import ru.ruslan.dto.SignUpDto;
+import ru.ruslan.validator.contract.PasswordsEqualConstraint;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

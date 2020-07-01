@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.ruslan.dto.SignUpDto;
 import ru.ruslan.service.contract.ConstraintService;
 import ru.ruslan.service.contract.SignUpService;
-import ru.ruslan.validator.AccountEmail;
+import ru.ruslan.validator.contract.AccountEmail;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;

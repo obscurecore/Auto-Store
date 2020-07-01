@@ -1,4 +1,6 @@
-package ru.ruslan.validator;
+package ru.ruslan.validator.contract;
+
+import ru.ruslan.validator.PasswordsEqualConstraintValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
