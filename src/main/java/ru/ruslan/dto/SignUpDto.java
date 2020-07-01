@@ -2,6 +2,8 @@ package ru.ruslan.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import ru.ruslan.validator.PasswordsEqualConstraint;
 import ru.ruslan.validator.ReCaptcha;
@@ -23,7 +25,7 @@ public class SignUpDto {
     private String username;
 
     @NotBlank(message = "Please, fill the email")
-    @Email(message = "Email is not correct")
+    @Email(message = "{errors.incorrect.email}")
     @UniqueEmail
     private String email;
 
