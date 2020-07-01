@@ -4,13 +4,13 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;
 
-@Target({ElementType.TYPE})
+@Target({ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = PasswordsEqualConstraintValidator.class)
+@Constraint(validatedBy = AccountEmailValidator.class)
 
-public @interface PasswordsEqualConstraint {
-    String message() default "{errors.unequal.passwords}";
+public @interface AccountEmail {
+    String message() default "Denied";
 
     Class<?>[] groups() default {};
 

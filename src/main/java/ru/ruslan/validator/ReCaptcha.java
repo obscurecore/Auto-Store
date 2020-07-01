@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
 public @interface ReCaptcha {
-    public String message() default "Are you bot?)";
+    public String message() default "{errors.unsuccessful.recaptcha}";
 
     public Class<?>[] groups() default {};
 

@@ -2,8 +2,6 @@ package ru.ruslan.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import ru.ruslan.validator.PasswordsEqualConstraint;
 import ru.ruslan.validator.ReCaptcha;
@@ -15,7 +13,7 @@ import javax.validation.constraints.Size;
 
 @Data
 @Component
-@PasswordsEqualConstraint(message = "passwords are not equal")
+@PasswordsEqualConstraint
 public class SignUpDto {
 
     @ReCaptcha
@@ -24,15 +22,15 @@ public class SignUpDto {
 
     private String username;
 
-    @NotBlank(message = "Please, fill the email")
+    @NotBlank(message = "{error.not_blank.field}")
     @Email(message = "{errors.incorrect.email}")
     @UniqueEmail
     private String email;
 
-    @NotBlank(message = "Password cannot be empty")
-    @Size(min = 5, max = 45, message = "5:45")
+    @NotBlank(message = "{error.not_blank.field}")
+    @Size(min = 5, message = "{error.size.password}")
     private String password;
 
-    @NotBlank(message = "Password confirmation cannot be empty")
+    @NotBlank(message = "{error.not_blank.field}")
     private String passwordRepeat;
 }

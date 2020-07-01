@@ -8,6 +8,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import ru.ruslan.dto.EmailDto;
 
+
+/**
+ * Email aspect for confirmation account.
+ */
 @Aspect
 @Component
 @AllArgsConstructor

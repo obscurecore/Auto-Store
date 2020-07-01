@@ -19,7 +19,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 public @interface UniqueEmail {
     //declare all the parameters that can be add to annotation
-    public String message() default "There is already exist user with this email!";
+    public String message() default "{errors.incorrect.email}";
 
     public Class<?>[] groups() default {};
 
