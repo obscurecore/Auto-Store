@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -31,7 +32,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users").authenticated()
                 .antMatchers("/").authenticated()
                 .and()
-                .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
+                .and();
+        //persistentTokenRepository save tokens in BD
+        //  .rememberMe().rememberMeParameter("remember-me").tokenRepository(persistentTokenRepository());
 
         http.formLogin()
                 .loginPage("/login")
@@ -39,6 +43,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .failureUrl("/login?error")
                 .permitAll();
+
+        http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/signIn")
+                .deleteCookies("SESSION", "remeber-me")
+                .invalidateHttpSession(true);
     }
 
     @Autowired

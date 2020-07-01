@@ -1,10 +1,10 @@
 package ru.ruslan.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.ruslan.validator.PasswordsEqualConstraint;
+import ru.ruslan.validator.ReCaptcha;
 import ru.ruslan.validator.UniqueEmail;
 
 import javax.validation.constraints.Email;
@@ -15,6 +15,10 @@ import javax.validation.constraints.Size;
 @Component
 @PasswordsEqualConstraint(message = "passwords are not equal")
 public class SignUpDto {
+
+    @ReCaptcha
+    @JsonAlias("g-recaptcha-response")
+    String captchaResponse;
 
     private String username;
 
