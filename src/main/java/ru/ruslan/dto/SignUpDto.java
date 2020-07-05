@@ -11,6 +11,10 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+/**
+ * The dto to sign up
+ * @author ruslan
+ */
 @Data
 @Component
 @PasswordsEqualConstraint

@@ -6,6 +6,10 @@ import lombok.Data;
 
 import java.util.Set;
 
+/**
+ * The DTO for captcha
+ * @author ruslan
+ */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReCaptchaDto {

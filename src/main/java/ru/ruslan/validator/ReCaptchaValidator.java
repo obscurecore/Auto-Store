@@ -10,17 +10,16 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.Collections;
 
-
+/**
+ * Class is implementing ConstraintValidator<A extends Annotation,T> check status of response for captcha
+ * @author ruslan
+ */
 public class ReCaptchaValidator implements ConstraintValidator<ReCaptcha, String> {
     private final static String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
     @Value("${recaptcha.secret}")
     private String secret;
-
-    @Override
-    public void initialize(ReCaptcha constraintAnnotation) {
-    }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext arg1) {

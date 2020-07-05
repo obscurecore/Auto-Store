@@ -11,6 +11,7 @@ import ru.ruslan.dto.EmailDto;
 
 /**
  * Email aspect for confirmation account.
+ * @author ruslan
  */
 @Aspect
 @Component
@@ -19,6 +20,11 @@ public class EmailAspect {
 
     JavaMailSender javaMailSender;
 
+    /**
+     * Send email with verification code - UUID
+     *
+     * @param emailDto - dto
+     */
     @AfterReturning(value = "execution(* ru.ruslan.service.contract.SignUpService.signUp(*))", returning = "emailDto")
     public void signUpAdvice(EmailDto emailDto) {
 

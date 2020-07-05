@@ -16,7 +16,10 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.Map;
 
-
+/**
+ * Sign up rest controller.
+ * @author ruslan
+ */
 @AllArgsConstructor
 @RestController
 @RequestMapping("/signUp")
@@ -26,6 +29,11 @@ public class SignUpRestController {
     private SignUpService service;
 
 
+    /**
+     * Registry user with validate or throw exception
+     * @param signUpDto the dto
+     * @param response  redirect
+     */
     @SneakyThrows
     @PostMapping
     @ResponseStatus(value = HttpStatus.OK)
@@ -34,6 +42,12 @@ public class SignUpRestController {
         response.sendRedirect("signUp");
     }
 
+    /**
+     * Confirm registration. Validate with @AccountEmail
+     *
+     * @param link     the UUID code
+     * @param response redirect
+     */
     @SneakyThrows
     @GetMapping("/confirmation/{link}")
     @ResponseStatus(value = HttpStatus.OK)
@@ -41,15 +55,28 @@ public class SignUpRestController {
         response.sendRedirect("/signUp");
     }
 
+    /**
+     * Handle validation exceptions
+     *
+     * @param ex the reports the result of constraint violations.
+     * @return the JSON
+     */
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleConstraintValidationExceptions(ConstraintViolationException ex) {
         return constraintService.getConstraintErrors(ex);
     }
 
+    /**
+     * Handle method validation exceptions
+     *
+     * @param ex the exception when validation on an argument annotated with @Valid fails.
+     * @return the JSON
+     */
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleMethodValidationExceptions(MethodArgumentNotValidException ex) {
-        return constraintService.getMethodErrors(ex.getBindingResult());
+        return constraintService.getMethodErrors(ex);
     }
 }
+

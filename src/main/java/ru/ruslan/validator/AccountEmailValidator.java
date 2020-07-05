@@ -13,11 +13,14 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.Calendar;
 import java.util.Optional;
 import java.util.UUID;
-
+/**
+ * Class is implementing ConstraintValidator<A extends Annotation,T> check confirmation link
+ * @author ruslan
+ */
 @AllArgsConstructor
 public class AccountEmailValidator implements ConstraintValidator<AccountEmail, String> {
-    UserRepository userRepository;
-    EmailAspect emailAspect;
+    private final UserRepository userRepository;
+    private final EmailAspect emailAspect;
 
     @Override
     public void initialize(AccountEmail constraintAnnotation) {

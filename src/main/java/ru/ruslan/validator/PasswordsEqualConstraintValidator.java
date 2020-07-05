@@ -5,7 +5,10 @@ import ru.ruslan.validator.contract.PasswordsEqualConstraint;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
+/**
+ * Class is implementing ConstraintValidator<A extends Annotation,T> check if both strings is equal
+ * @author ruslan
+ */
 public class PasswordsEqualConstraintValidator implements
         ConstraintValidator<PasswordsEqualConstraint, Object> {
 

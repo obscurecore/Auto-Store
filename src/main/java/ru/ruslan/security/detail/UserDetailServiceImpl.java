@@ -10,11 +10,14 @@ import ru.ruslan.repository.UserRepository;
 
 import java.util.Optional;
 
+/**
+ * Custom realization to get Authentication
+ */
 @AllArgsConstructor
 @Service("UserDetailServiceImpl")
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

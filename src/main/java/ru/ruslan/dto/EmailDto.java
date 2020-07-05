@@ -5,6 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The DTO to send email: for confirmation account
+ * @author ruslan
+ */
 @Data
 @Builder
 @NoArgsConstructor

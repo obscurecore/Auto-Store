@@ -19,9 +19,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Qualifier("UserDetailServiceImpl")
-    private UserDetailsService userDetailsService;
-    private PasswordEncoder passwordEncoder;
-    private AccessDeniedHandler accessDeniedHandler;
+    private final UserDetailsService userDetailsService;
+    private final PasswordEncoder passwordEncoder;
+    private final AccessDeniedHandler accessDeniedHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -34,8 +34,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
                 .and()
-                //persistentTokenRepository save tokens in BD
-                .rememberMe().rememberMeParameter("remember-me");
+                .rememberMe().rememberMeParameter("remember-me"); //persistentTokenRepository save tokens in BD
 
         http.formLogin()
                 .loginPage("/login")
@@ -46,7 +45,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/signIn")
-                .deleteCookies("SESSION", "remeber-me")
+                .deleteCookies("SESSION", "remember-me")
                 .invalidateHttpSession(true);
     }
 

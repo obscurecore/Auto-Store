@@ -27,7 +27,7 @@ public class User {
 
     private boolean enabled;
 
-    // OneToMany relationship contain in separate table
+    // OneToMany relationship
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)

@@ -16,6 +16,9 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.UUID;
 
+/**
+ * Service for registration
+ */
 @Component
 @AllArgsConstructor
 public class SignUpServiceImpl implements SignUpService {
