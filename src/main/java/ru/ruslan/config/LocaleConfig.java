@@ -33,7 +33,7 @@ public class LocaleConfig implements WebMvcConfigurer {
      */
     @Bean
     public LocaleResolver localeResolver() {
-        CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
+        var cookieLocaleResolver = new CookieLocaleResolver();
         cookieLocaleResolver.setCookieName("localeInfo");
         cookieLocaleResolver.setCookieMaxAge(60 * 60 * 24 * 365);
         return cookieLocaleResolver;
@@ -47,7 +47,7 @@ public class LocaleConfig implements WebMvcConfigurer {
      */
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
-        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        var localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("lang");
         return localeChangeInterceptor;
     }
@@ -59,9 +59,23 @@ public class LocaleConfig implements WebMvcConfigurer {
      */
     @Bean
     public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        var messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:messages/messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
+    }
+
+    @Override
+    public MessageCodesResolver getMessageCodesResolver() {
+        var codesResolver = new DefaultMessageCodesResolver();
+        codesResolver.setMessageCodeFormatter(DefaultMessageCodesResolver.Format.POSTFIX_ERROR_CODE);
+        return codesResolver;
+    }
+
+    @Bean
+    public LocalValidatorFactoryBean getValidator() {
+        var bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(messageSource());
+        return bean;
     }
 }

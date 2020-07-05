@@ -3,14 +3,16 @@ package ru.ruslan.aspect;
 import lombok.AllArgsConstructor;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import ru.ruslan.dto.EmailDto;
 
-
 /**
  * Email aspect for confirmation account.
+ *
  * @author ruslan
  */
 @Aspect
@@ -18,7 +20,8 @@ import ru.ruslan.dto.EmailDto;
 @AllArgsConstructor
 public class EmailAspect {
 
-    JavaMailSender javaMailSender;
+    private final MessageSource messageSource;
+    private final JavaMailSender javaMailSender;
 
     /**
      * Send email with verification code - UUID
@@ -29,10 +32,7 @@ public class EmailAspect {
     public void signUpAdvice(EmailDto emailDto) {
 
         var message = String.format(
-                "Hello, %s!\n" +
-                        "Welcome to Store. Please visit next link to activate your account:" +
-                        "http://localhost:8080/signUo/confirmation/%s!\n" +
-                        "Valid for 24 hours",
+                messageSource.getMessage("email.confirmation", null, LocaleContextHolder.getLocale()),
                 emailDto.getUsername(),
                 emailDto.getSecret()
         );

@@ -1,6 +1,8 @@
 package ru.ruslan.validator;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import ru.ruslan.aspect.EmailAspect;
 import ru.ruslan.dto.EmailDto;
 import ru.ruslan.model.State;
@@ -20,6 +22,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class AccountEmailValidator implements ConstraintValidator<AccountEmail, String> {
     private final UserRepository userRepository;
+    private final MessageSource messageSource;
     private final EmailAspect emailAspect;
 
     @Override
@@ -32,8 +35,8 @@ public class AccountEmailValidator implements ConstraintValidator<AccountEmail, 
 
         cxt.disableDefaultConstraintViolation();
         Optional<User> userOptional = userRepository.findUserByVerificationToken_Token(link);
-        if (!userOptional.isPresent()) {
-            cxt.buildConstraintViolationWithTemplate("{error.invalid_link.mail}").addConstraintViolation();
+        if (userOptional.isEmpty()) {
+            cxt.buildConstraintViolationWithTemplate("{error.email.invalid_link}").addConstraintViolation();
             return false;
         } else {
             var user = userOptional.get();
@@ -43,10 +46,10 @@ public class AccountEmailValidator implements ConstraintValidator<AccountEmail, 
                         .username(user.getUsername())
                         .secret(UUID.randomUUID().toString())
                         .to(user.getEmail())
-                        .templateName("Reactivation account")
+                        .templateName(messageSource.getMessage("email.reactivation", null, LocaleContextHolder.getLocale()))
                         .build());
 
-                cxt.buildConstraintViolationWithTemplate("{error.expired_link.mail}").addConstraintViolation();
+                cxt.buildConstraintViolationWithTemplate("{error.email.expired_link}").addConstraintViolation();
                 return false;
             }
             user.setState(State.CONFIRMED);

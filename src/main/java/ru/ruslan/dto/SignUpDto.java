@@ -26,15 +26,15 @@ public class SignUpDto {
 
     private String username;
 
-    @NotBlank(message = "{error.not_blank.field}")
-    @Email(message = "{errors.incorrect.email}")
+    @NotBlank(message = "{error.field.not_blank}")
+    @Email(message = "{error.email.incorrect}")
     @UniqueEmail
     private String email;
 
-    @NotBlank(message = "{error.not_blank.field}")
-    @Size(min = 5, message = "{error.size.password}")
+    @NotBlank(message = "{error.field.not_blank}")
+    @Size(min = 5, message = "{error.password.size}")
     private String password;
 
-    @NotBlank(message = "{error.not_blank.field}")
+    @NotBlank(message = "{error.field.not_blank}")
     private String passwordRepeat;
 }

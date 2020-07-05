@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = AccountEmailValidator.class)
 
 public @interface AccountEmail {
-    String message() default "Denied";
+    String message() default "{error.email.incorrect}";
 
     Class<?>[] groups() default {};
 

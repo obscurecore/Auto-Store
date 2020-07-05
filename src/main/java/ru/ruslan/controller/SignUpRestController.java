@@ -25,8 +25,8 @@ import java.util.Map;
 @RequestMapping("/signUp")
 @Validated
 public class SignUpRestController {
-    private ConstraintService constraintService;
-    private SignUpService service;
+    private final ConstraintService constraintService;
+    private final SignUpService service;
 
 
     /**

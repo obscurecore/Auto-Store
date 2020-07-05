@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Constraint(validatedBy = PasswordsEqualConstraintValidator.class)
 
 public @interface PasswordsEqualConstraint {
-    String message() default "{errors.unequal.passwords}";
+    String message() default "{error.password.unequal}";
 
     Class<?>[] groups() default {};
 

@@ -21,7 +21,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD})
 public @interface UniqueEmail {
     //declare all the parameters that can be add to annotation
-    public String message() default "{errors.incorrect.email}";
+    public String message() default "{error.email.unique}";
 
     public Class<?>[] groups() default {};
 

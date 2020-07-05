@@ -1,15 +1,12 @@
 GET http://localhost:8080/signUp/confirmation/3
 Accept: application/json
 
-GET http://localhost:8080/signUp/confirmation/2
-Accept: application/json
-
 ###Confirmation
 POST http://localhost:8080/signUp
 Content-Type: application/json
 
-{ "email": "pruang@gmail.com",
-  "password": "1236","passwordRepeat": "123456",
+{ "email": "@gmail.com",
+  "password": "1256","passwordRepeat": "123456",
   "g-recaptcha-response": "1",
   "remember-me":"on"}
 ###Sign Up

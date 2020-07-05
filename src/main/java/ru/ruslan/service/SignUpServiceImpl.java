@@ -1,6 +1,8 @@
 package ru.ruslan.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.ruslan.dto.EmailDto;
@@ -25,6 +27,7 @@ public class SignUpServiceImpl implements SignUpService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final MessageSource messageSource;
 
     @Override
     public EmailDto signUp(SignUpDto form) {
@@ -51,7 +54,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .username(form.getUsername())
                 .secret(uuid)
                 .to(user.getEmail())
-                .templateName("Email Confirmation")
+                .templateName(messageSource.getMessage("email.confirmation.title", null, LocaleContextHolder.getLocale()))
                 .build();
     }
 }

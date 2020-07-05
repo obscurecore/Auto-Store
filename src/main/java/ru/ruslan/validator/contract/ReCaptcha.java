@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
 public @interface ReCaptcha {
-    public String message() default "{errors.unsuccessful.recaptcha}";
+    public String message() default "{error.recaptcha.unsuccessful}";
 
     public Class<?>[] groups() default {};
 

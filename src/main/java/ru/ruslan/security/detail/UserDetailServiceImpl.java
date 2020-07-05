@@ -1,6 +1,8 @@
 package ru.ruslan.security.detail;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,15 +20,15 @@ import java.util.Optional;
 public class UserDetailServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final MessageSource messageSource;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> userOptional = userRepository.findUsersByEmail(email);
         if (userOptional.isPresent()) {
-            User user = userOptional.get();
+            var user = userOptional.get();
             return new UserDetailsImpl(user);
         }
-        throw new UsernameNotFoundException("User not found");
-
+         throw new UsernameNotFoundException(messageSource.getMessage("error.user.not_found",null, LocaleContextHolder.getLocale()));
     }
 }
