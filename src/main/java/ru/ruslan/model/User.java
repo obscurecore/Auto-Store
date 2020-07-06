@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Data
@@ -14,7 +15,7 @@ import java.util.Set;
 @Builder
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,8 +25,6 @@ public class User {
     private String username;
 
     private String password;
-
-    private boolean enabled;
 
     // OneToMany relationship
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)

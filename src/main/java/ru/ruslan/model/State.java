@@ -1,5 +1,7 @@
 package ru.ruslan.model;
 
-public enum State {
+import java.io.Serializable;
+
+public enum State implements Serializable {
     CONFIRMED, NOT_CONFIRMED
 }
